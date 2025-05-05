@@ -1,24 +1,27 @@
-import { useEffect } from 'react';
-import { useUserStore } from '@/store/user';
+import { useEffect } from "react";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { useUserStore } from "@/store/user";
 
 export const useCurrentUser = () => {
-  const { user, setUser } = useUserStore();
+  const { user, isLoading: auth0Loading } = useUser();
+  const { backendUser, setBackendUser } = useUserStore();
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await fetch('/api/auth/me');
-        if (!res.ok) return;
+    if (!user || backendUser) return;
 
+    const fetchBackendUser = async () => {
+      try {
+        const res = await fetch("/api/user"); 
+        if (!res.ok) throw new Error("failed to fetch backend user");
         const data = await res.json();
-        setUser(data.user);
+        setBackendUser(data);
       } catch (err) {
-        console.error('Failed to fetch user', err);
+        console.error("failed to load backend user:", err);
       }
     };
 
-    if (!user) fetchUser();
-  }, [user, setUser]);
+    fetchBackendUser();
+  }, [user, auth0Loading, backendUser]);
 
-  return { user };
+  return { user, backendUser, loading: auth0Loading };
 };

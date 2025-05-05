@@ -78,7 +78,7 @@ export default function LandingPage() {
           <span className="text-lg">Bouncy.ai</span>
         </Link>
         <nav className="flex items-center gap-4">
-          <Link href="/login">
+          <Link href="/api/auth/login">
             <Button variant="ghost">Log in</Button>
           </Link>
           <Link href="/register">
@@ -100,7 +100,7 @@ export default function LandingPage() {
           Create, manage, and track short links with powerful analytics and enterprise-grade features.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-          <Link href="/register">
+          <Link href="/api/auth/signup">
             <Button size="lg">Start for Free</Button>
           </Link>
           <Button variant="outline" size="lg">

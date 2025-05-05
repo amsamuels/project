@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import { Auth0Provider } from '@auth0/nextjs-auth0';
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Auth0Provider>
+        <UserProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="light"
@@ -30,7 +30,7 @@ export default function RootLayout({
             {children}
         <Toaster /> 
           </ThemeProvider>
-        </Auth0Provider>
+        </UserProvider>
       </body>
     </html>
   );
