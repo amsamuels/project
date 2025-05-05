@@ -1,3 +1,4 @@
+"use client";
 import { 
   Card, 
   CardContent, 
@@ -13,7 +14,17 @@ import {
   ActivityChart
 } from "@/components/dashboard";
 
+import { useCurrentUser } from "@/hooks/useCurrentUser";
+
+
 export default function Dashboard() {
+
+
+  const { user, backendUser, loading } = useCurrentUser();
+
+  if (loading) return <p>Loading...</p>;
+  if (!user) return <p>You are not logged in.</p>;
+
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>

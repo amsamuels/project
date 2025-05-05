@@ -4,7 +4,7 @@ export type BackendUser = {
   name: string;
   email: string;
   auth0_sub: string;
-  role: string;
+  role: 'free' | 'premium' | 'enterprise'; 
   created_at: string;
 };
 

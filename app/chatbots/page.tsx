@@ -6,6 +6,7 @@ import { ChatbotList } from "@/components/dashboard/chatbot-list";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+
 export default function ChatbotsPage() {
   return (
     <div className="flex flex-col gap-6">
