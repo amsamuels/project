@@ -3,9 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import { DashboardLayout } from '@/components/layouts/dashboard-layout';
-import { UserProvider } from "@auth0/nextjs-auth0/client"; 
-
+import { Auth0Provider } from '@auth0/nextjs-auth0';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,17 +20,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-      <UserProvider>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <DashboardLayout>{children}</DashboardLayout>
-          <Toaster />
-        </ThemeProvider>
-        </UserProvider>
+        <Auth0Provider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+        <Toaster /> 
+          </ThemeProvider>
+        </Auth0Provider>
       </body>
     </html>
   );
